@@ -28,7 +28,13 @@ class NftmarketplaceController(private val service: NftService) {
 
     @PostMapping("/api")
     @ResponseStatus(HttpStatus.CREATED)
-    fun addNFT(@RequestBody nft: NFT): NFT = service.addNFT(nft)
+    fun addNFT(@RequestBody nft: NFT): NFT {
+        val maxId = service.getNFTs().maxOfOrNull { it.id } ?: 0
+        val newNft = NFT(id = maxId + 1, name = nft.name, floorPrice = nft.floorPrice)
+
+        service.addNFT(newNft)
+        return newNft
+    }
 
     @PatchMapping("/api")
     fun updateNFT(@RequestBody nft: NFT): NFT = service.updateNFT(nft)
