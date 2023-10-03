@@ -3,13 +3,13 @@ package com.raywenderlich.nftmarketplace.datasource
 import com.raywenderlich.nftmarketplace.model.NFT
 
 interface NftDataSource {
-    fun retrieveBanks(): Collection<NFT>
+    fun retrieveNFTs(): Collection<NFT>
 
-    fun retrieveBank(accountNumber: String): NFT
+    fun retrieveNFT(id: Int): NFT
 
-    fun createBank(bank: NFT): NFT
+    fun createNFT(nft: NFT): NFT
 
-    fun updateBank(bank: NFT): NFT
+    fun updateNFT(nft: NFT): NFT
 
-    fun deleteBank(accountNumber: String)
+    fun deleteNFT(id: Int)
 }
