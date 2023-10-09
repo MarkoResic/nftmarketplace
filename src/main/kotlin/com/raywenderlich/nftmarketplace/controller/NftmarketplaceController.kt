@@ -2,14 +2,18 @@ package com.raywenderlich.nftmarketplace.controller
 
 import com.raywenderlich.nftmarketplace.model.NFT
 import com.raywenderlich.nftmarketplace.service.NftService
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
 class NftmarketplaceController(private val service: NftService) {
 
+    @Value("\${company_name}")
+    private lateinit var name: String
+
     @GetMapping("/homepage")
-    fun getHomePage() = "NFTs Marketplace"
+    fun getHomePage() = "$name: NFTs Marketplace"
 
     @GetMapping("/api")
     fun getNFTs(): Collection<NFT> = service.getNFTs()
@@ -19,13 +23,7 @@ class NftmarketplaceController(private val service: NftService) {
 
     @PostMapping("/api")
     @ResponseStatus(HttpStatus.CREATED)
-    fun addNFT(@RequestBody nft: NFT): NFT {
-        val maxId = service.getNFTs().maxOfOrNull { it.id } ?: 0
-        val newNft = NFT(id = maxId + 1, name = nft.name, floorPrice = nft.floorPrice)
-
-        service.addNFT(newNft)
-        return newNft
-    }
+    fun addNFT(@RequestBody nft: NFT): NFT = service.addNFT(nft)
 
     @PatchMapping("/api")
     fun updateNFT(@RequestBody nft: NFT): NFT = service.updateNFT(nft)
