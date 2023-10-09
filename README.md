@@ -1,6 +1,6 @@
 # NFT Marketplace Example Project
 
-This is a sample Kotlin / Gradle / Spring Boot (version 3.1.4) web application that provides API endpoints for CRUD operations with "NFTs" as defined in https://www.kodeco.com/28749494-kotlin-and-spring-boot-getting-started
+This is a sample Kotlin / Gradle / Spring Boot (version 3.1.4) web application that provides API endpoints for CRUD operations with "NFTs" as defined in https://www.kodeco.com/28749494-kotlin-and-spring-boot-getting-started.
 
 
 ## How to Run 
